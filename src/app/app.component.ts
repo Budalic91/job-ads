@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { UtilsService } from './shared/services/utils.service';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'job-ads';
+  isMobile$: Observable<boolean>;
 
-  ngOnInit() {
-    console.log(environment?.production)
+  constructor(
+    private _utilsService: UtilsService,
+  ) {
+    this.isMobile$ = this._utilsService.isMobile$;
   }
 }

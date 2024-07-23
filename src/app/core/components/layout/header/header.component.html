@@ -1,0 +1,27 @@
+<mat-toolbar color="primary" *ngIf="!(isMobile$ | async)!" class="desktop-header">
+  <span>{{ title }}</span>
+  <nav>
+    <a mat-button routerLink="/">Job Addvertisment</a>
+    <a mat-button routerLink="/invoice">Invoice</a>
+  </nav>
+</mat-toolbar>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="over" class="mobile-sidenav">
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">Job Addvertisment</a>
+      <a mat-list-item routerLink="/invoice">Invoice</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" *ngIf="isMobile$ | async" class="mobile-header">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>{{ title }}</span>
+    </mat-toolbar>
+    <div class="content" >
+      <ng-content></ng-content>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

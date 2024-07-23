@@ -1,0 +1,83 @@
+<form [formGroup]="jobAdForm" class="margin-top-20" [ngClass]="{'form-container': !isMobile, 'form-container-mobile': isMobile}">
+  <div class="row">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+      <mat-error *ngIf="jobAdFormControls['title'].hasError('required')">
+        Title is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error *ngIf="jobAdFormControls['description'].hasError('required')">
+        Description is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+
+  <div class="row">
+    <mat-form-field class="example-chip-list" appearance="fill">
+      <mat-label>Skills</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Enter fruits">
+        <ng-container *ngIf="skillsArray.controls.length">
+          <mat-chip-row *ngFor="let skill of skillsArray.controls; let i = index"
+                      (removed)="removeSkill(i)"
+                      >
+          {{skill.value | capitalizeFirst}}
+          <button matChipRemove [attr.aria-label]="'remove ' + skill.value">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        </ng-container>
+        <input placeholder="New skill..."
+               [matChipInputFor]="chipGrid"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="addSkill($event)"/>
+      </mat-chip-grid>
+      <mat-error  *ngIf="jobAdFormControls['skills'].hasError('emptyArrayError')">
+        Skills is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option
+            [disabled]="currentStatus"
+            [value]="JobAdStatus.Draft">
+            Draft
+          </mat-option>
+          <mat-option
+            [disabled]="currentStatus !== JobAdStatus.Draft"
+            [value]="JobAdStatus.Published"
+          >
+            Published
+          </mat-option>
+          <mat-option
+            [disabled]="currentStatus !== JobAdStatus.Published"
+            [value]="JobAdStatus.Archived"
+          >
+            Archived
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+
+
+  <div class="d-flex justify-content-center margin-top-20">
+    <button class="margin-15" mat-raised-button color="secondary"
+      (click)="onCancelFormAction()"
+    >
+      Cancel
+    </button>
+    <button class="margin-15" mat-raised-button color="primary"
+      (click)="onSaveFormAction()"
+      [disabled]="!jobAdForm.valid"
+    >
+      {{ submitButtonText }}
+    </button>
+  </div>
+</form>

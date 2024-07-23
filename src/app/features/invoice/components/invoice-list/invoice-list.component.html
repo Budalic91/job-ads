@@ -1,0 +1,46 @@
+<div>
+  <ng-container *ngIf="invoices.length > 0">
+    <table mat-table [dataSource]="invoices" class="mat-elevation-z8" *ngIf="!isMobile">
+
+      <ng-container matColumnDef="jobAdTitle">
+        <th mat-header-cell *matHeaderCellDef> Job Advertisment Title </th>
+        <td mat-cell *matCellDef="let element"> {{element.jobAdTitle}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.amount | currency : 'EUR'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dueDate">
+        <th mat-header-cell *matHeaderCellDef> Due Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.dueDate | dateFormat}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div class="card-container" *ngIf="isMobile">
+      <ng-container *ngFor="let element of invoices; trackBy: identify" >
+        <mat-card  class="example-card">
+          <mat-card-header>
+            <mat-card-title>{{element.jobAdTitle}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              <strong>Amount: </strong>{{element.amount}}
+            </p>
+            <p>
+              <strong>dueDate: </strong>{{element.dueDate}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+        <br />
+      </ng-container>
+    </div>
+  </ng-container>
+  <p *ngIf="invoices && invoices.length < 1">Invoice list is empty</p>
+</div>
+
+

@@ -1,0 +1,22 @@
+<div *ngIf="jobAd$ | async as jobAd; else showCreateForm">
+  <h1>{{ titleUpdate }}</h1>
+    <app-job-form [jobAd]="jobAd"
+      [isMobile]="(isMobile$ | async)!"
+      (cancelFormAction)="onCancelFormAction();"
+      (saveFormAction)="onSaveFormAction($event);"
+      [submitButtonText]="submitButtonTextUpdate"
+      >
+    </app-job-form>
+</div>
+<ng-template #showCreateForm>
+  <div>
+    <h1>{{ titleAdd }}</h1>
+  </div>
+  <app-job-form [jobAd]="null"
+    [isMobile]="(isMobile$ | async)!"
+    (cancelFormAction)="onCancelFormAction();"
+    (saveFormAction)="onSaveFormAction($event);"
+    [submitButtonText]="submitButtonTextAdd"
+    >
+  </app-job-form>
+</ng-template>

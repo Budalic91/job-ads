@@ -1,0 +1,19 @@
+<div *ngIf="jobAds$ | async as jobAds">
+  <h1>{{ title }}</h1>
+  <div *ngIf="filter$ | async as filter">
+    <app-job-filter
+      [filter]="filter"
+      [isMobile]="(isMobile$ | async)!"
+      (clearFiltersAction)="clearFilters()"
+      (filterAction)="applyFilter($event)"
+      >
+    </app-job-filter>
+  </div>
+
+  <app-job-list [jobAds]="jobAds" [isMobile]="(isMobile$ | async)!"
+    (editJobAdEmitter)="onEditJobAd($event)"
+    (deleteJobAdEmitter)="onDeleteJobAd($event)"
+    (addNewJobAdEmitter)="onAddNewJobAd()"
+    >
+  </app-job-list>
+</div>

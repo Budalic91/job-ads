@@ -1,0 +1,18 @@
+.loader-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, .2);
+  z-index: 1053;
+  position: fixed;
+
+  // .loader {
+  //     height: 80px;
+  //     width: 80px;
+  //     -webkit-animation: spin 4s linear infinite;
+  //     -moz-animation: spin 4s linear infinite;
+  //     animation: spin 4s linear infinite;
+  // }
+}

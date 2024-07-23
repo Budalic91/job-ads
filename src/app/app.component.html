@@ -1,2 +1,8 @@
-
-<router-outlet></router-outlet>
+<app-loader></app-loader>
+<main>
+  <app-header>
+    <div class="content-wrapper" [ngClass]="{'desktop-height': (isMobile$ | async)!}">
+      <router-outlet></router-outlet>
+    </div>
+  </app-header>
+</main>
