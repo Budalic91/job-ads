@@ -6,7 +6,9 @@ import { JobActions, getFilter, getFilteredJobAds, getJobAd } from '../../store'
 import { ActivatedRoute, Router } from '@angular/router';
 import { InvoiceState } from '../../../invoice/models';
 import { InvoiceActions } from '../../../invoice/store';
-import { UtilsService } from 'src/app/shared/services/utils.service';
+import { UtilsService } from '../../../../shared/services';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../../../../shared/components';
 
 
 @Component({
@@ -27,6 +29,7 @@ export class JobLayoutComponent implements OnInit{
     private _route: Router,
     private _activatedRouter: ActivatedRoute,
     private _utilsService: UtilsService,
+    private _dialog: MatDialog,
   ) {
     this.jobAds$ = this._jobStore.pipe(select(getFilteredJobAds));
     this.selectedJobAd$ = this._jobStore.pipe(select(getJobAd));
@@ -51,10 +54,19 @@ export class JobLayoutComponent implements OnInit{
 
   public onDeleteJobAd(id: number): void {
     if (id) {
-      if (confirm('Are you sure you want to delete job advertisment?')) {
-        this._invoiceStore.dispatch(InvoiceActions.loadInvoices());
-        this._jobStore.dispatch(JobActions.deleteJobAd({id}));
-      }
+      const dialogRef = this._dialog.open(DialogComponent, {
+        data: {
+          title: 'Alert',
+          content: 'Are you sure want to delete jobAd?',
+        }
+      });
+
+      dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+        if (confirmed) {
+          this._invoiceStore.dispatch(InvoiceActions.loadInvoices());
+          this._jobStore.dispatch(JobActions.deleteJobAd({id}));
+        }
+      })
     }
   }
 

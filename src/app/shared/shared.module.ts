@@ -13,12 +13,14 @@ import {MatIconModule} from '@angular/material/icon';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CapitalizeFirstPipe, DateFormattPipe } from './pipes';
+import { DialogComponent } from './components';
 
 
 
 const SHARED_COMPONENTS = [
   CapitalizeFirstPipe,
   DateFormattPipe,
+  DialogComponent,
 ];
 const SHARED_MATERIAL_MODULES = [
   MatTableModule,
