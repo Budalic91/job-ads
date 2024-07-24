@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { DialogData } from '../models';
 
 @Component({
   selector: 'app-dialog',
@@ -11,7 +12,7 @@ export class DialogComponent {
   content = '';
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) private data: any,
+    @Inject(MAT_DIALOG_DATA) private data: DialogData,
     private dialogRef: MatDialogRef<DialogComponent>) {
       if (data) {
         this.title = data.title;

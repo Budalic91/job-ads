@@ -57,7 +57,7 @@ export class JobLayoutComponent implements OnInit{
       const dialogRef = this._dialog.open(DialogComponent, {
         data: {
           title: 'Alert',
-          content: 'Are you sure want to delete jobAd?',
+          content: 'Are you sure want to delete job advertisment and invoice of advertisment?',
         }
       });
 
