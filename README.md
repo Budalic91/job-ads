@@ -15,31 +15,31 @@ Default configuration is develpment
 
 ## Getting Started
 
-1. Clone the repository:
+•	 Clone the repository:
 
-	Command:
-	git clone https://github.com/Budalic91/job-ads.git
+  	Command:
+  	git clone https://github.com/Budalic91/job-ads.git
 	
-2. Install dependencies:
+•	 Install dependencies:
 
-	Command:
-	npm install
+  	Command:
+  	npm install
 
-3. Run the backend server:
+•	 Run the backend server:
 
-The application uses json-server to simulate a backend server. Ensure you have json-server installed globally:
-Command:
-npm install -g json-server@0.16.3
+    The application uses json-server to simulate a backend server. Ensure you have json-server installed globally:
+    Command:
+    npm install -g json-server@0.16.3
 
-Start the server:
-Command:
-npx json-server --watch db.json
+    Start the server:
+    Command:
+    npx json-server --watch db.json
 
-4.Run the Angular application
+•	Run the Angular application
 
-Command:
-npm start
-The application should now be running at http://localhost:4200.
+  Command:
+  npm start
+  The application should now be running at http://localhost:4200.
 
 ## Scripts
 The package.json includes several scripts for common tasks:
