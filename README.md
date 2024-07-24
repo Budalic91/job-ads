@@ -2,26 +2,79 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.10.
 
-## Development server
+## Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Ensure you have the following installed on your system:
+- Node.js(v16.14.0)
+- npm (comes with Node.js)
+- json-server 0.16.3
 
-## Code scaffolding
+## Environments
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Default configuration is develpment
+
+## Getting Started
+
+1. Clone the repository:
+
+	Command:
+	git clone https://github.com/Budalic91/job-ads.git
+	
+2. Install dependencies:
+
+	Command:
+	npm install
+
+3. Run the backend server:
+
+The application uses json-server to simulate a backend server. Ensure you have json-server installed globally:
+Command:
+npm install -g json-server@0.16.3
+
+Start the server:
+Command:
+npx json-server --watch db.json
+
+4.Run the Angular application
+
+Command:
+npm start
+The application should now be running at http://localhost:4200.
+
+## Scripts
+The package.json includes several scripts for common tasks:
+•	npm start: Runs the Angular application.
+•	npm run build: Builds the application for production.
+•	npm run watch: Builds the application in watch mode.
+•	npm test: Runs the unit tests.
+•	npm lint: Lints the project files.
+
+
+## Important Information
+
+## Angular Material
+
+The application uses Angular Material for the UI components.
+
+## NgRx State Management
+
+NgRx is used for managing the state of the application. The state is divided into multiple slices:
+•	jobAds: Manages the state of job advertisements.
+•	invoices: Manages the state of invoices
+
+## Running Unit Tests (not completed skip tests)
+
+The application uses Jasmine and Karma for unit testing. To run the tests:
+Command:
+npm test
+
+## Linting
+
+To lint the project files:
+Command:
+npm run lint
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
