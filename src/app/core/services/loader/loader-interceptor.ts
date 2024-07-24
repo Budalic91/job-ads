@@ -10,18 +10,18 @@ export class LoaderInterceptor implements HttpInterceptor {
         private loaderService: LoaderService) {
         this.currentRequests = 0;
     }
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
         this.incrementRequestCount();
         return next.handle(request)
             .pipe(
                 tap({
-                    next: (event: HttpEvent<any>) => {
+                    next: (event: HttpEvent<unknown>) => {
                         if (event instanceof HttpResponse) {
                             this.decrementRequestCount();
                         }
                     },
-                    error: (err: any) => {
+                    error: () => {
                         this.currentRequests = 0;
                         this.loaderService.setLoaderStatus(false);
                     }

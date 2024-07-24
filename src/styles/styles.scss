@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'colors' as c;
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -47,10 +48,10 @@ button {
 
 // exist some bug in angular material for panelClass prop
 ::ng-deep .success-snackbar  {
-  background: lightgreen!important;
+  background: c.$success!important;
 }
 ::ng-deep .error-snackbar {
-  background: red !important;
+  background: c.$error !important;
 }
 
 

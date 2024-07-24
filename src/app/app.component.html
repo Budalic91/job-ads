@@ -1,7 +1,7 @@
 <app-loader></app-loader>
 <main>
   <app-header>
-    <div class="content-wrapper" [ngClass]="{'desktop-height': (isMobile$ | async)!}">
+    <div class="mobile-wrapper" [ngClass]="{'desktop-height': (isMobile$ | async)!}">
       <router-outlet></router-outlet>
     </div>
   </app-header>

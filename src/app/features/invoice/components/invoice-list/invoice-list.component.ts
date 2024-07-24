@@ -30,7 +30,7 @@ export class InvoiceListComponent {
   private _isMobile = false;
   public displayedColumns: string[] = ['jobAdTitle', 'amount', 'dueDate'];
 
-  identify(index: any, item: InvoiceJobViewModel) {
+  identify(index: number, item: InvoiceJobViewModel) {
       return item.id;
   }
 
