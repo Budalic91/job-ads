@@ -78,7 +78,10 @@ function applyFilter(jobAds: JobAdViewModel[], filter: JobAdFilter): JobAdViewMo
   return jobAds.filter(jobAd => {
     const matchesTitle = !filter.title || jobAd.title.toLowerCase().includes(filter.title.toLowerCase());
     const matchesDescription = !filter.description || jobAd.description.toLowerCase().includes(filter.description.toLowerCase());
-    const matchesSkill = !filter.skill || jobAd.skills.find(item => item.toLowerCase().indexOf(filter?.skill?.toLowerCase() || ''));
+    const matchesSkill = !filter.skill || jobAd.skills.some(item => {
+      const skill = filter.skill ?? '';
+      return item.toLowerCase().includes(skill.toLowerCase());
+    });
     const matchStatus = !filter.status || jobAd.status.toLowerCase().includes(filter.status.toLowerCase());
     return matchesTitle && matchesDescription && matchesSkill && matchStatus;
   })
