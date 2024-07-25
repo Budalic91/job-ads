@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Prerequisites
 
 Ensure you have the following installed on your system:
-- Node.js(v16.14.0)
+- Node.js(v16.13.0)
 - npm (comes with Node.js)
 - json-server 0.16.3
 
