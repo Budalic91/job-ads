@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { JobFormLayoutComponent } from "./components";
 import { JobLayoutComponent } from "./components/job-layout/job-layout.component";
+import { CanMatchJobForm } from "./services/can-match.guard";
 
 
 const routes: Routes = [
@@ -12,7 +13,12 @@ const routes: Routes = [
   },
   {
     path: 'job-ads',
-    component: JobLayoutComponent
+    component: JobLayoutComponent,
+  },
+  {
+    path: 'job-form/:id',
+    component: JobFormLayoutComponent,
+    canMatch: [CanMatchJobForm],
   },
   {
     path: 'job-form',
@@ -25,3 +31,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class JobRoutingModule { }
+
+

@@ -92,7 +92,8 @@ export class JobFormComponent implements OnChanges {
 
   addSkill(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-    if (value) {
+    const skillArray: Array<string> = this.skillsArray.value;
+    if (value && !skillArray.includes(value)) {
       this.skillsArray.push(this._fb.control(value));
       this.skillsArray.updateValueAndValidity();
     }

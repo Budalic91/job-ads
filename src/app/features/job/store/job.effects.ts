@@ -2,13 +2,14 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import * as JobActions from './job.action';
 import * as InvoiceActions from '../../invoice/store/invoice.actions'
-import { catchError, filter, map, mergeMap, of, withLatestFrom } from "rxjs";
+import { catchError, filter, map, mergeMap, of, tap, withLatestFrom } from "rxjs";
 import { JobAdStatus } from '../models/job-ad.model';
 import { UtilsService } from "../../../shared/services/utils.service";
 import { Action, select, Store } from "@ngrx/store";
 import { InvoiceState } from "../../invoice/models";
 import { getInvoices } from "../../invoice/store";
 import { JobService } from "../services";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class JobEffects {
@@ -17,6 +18,7 @@ export class JobEffects {
     private _jobService: JobService,
     private _utilsService: UtilsService,
     private _invoiceStore: Store<InvoiceState>,
+    private _router: Router,
   ) {}
 
   loadJobAds$ = createEffect(() =>
@@ -64,6 +66,18 @@ export class JobEffects {
       )
     )
   );
+
+
+  checkCreateSucces$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(JobActions.createJobAddSuccess),
+      tap(() =>
+        {
+          this._router.navigate(['job-ads'])
+        }
+      )
+    )
+  )
 
   updateJobAd$ = createEffect(() =>
     this._actions$.pipe(

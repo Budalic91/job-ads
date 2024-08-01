@@ -38,7 +38,6 @@ export const jobAdReducer = createReducer(
   on(JobActions.updateJobAd, state => ({...state })),
   on(JobActions.updateJobAdSuccess, (state, { jobAd }) => ({
     ...state,
-    loading: false,
     jobAds: state.jobAds.map(ad => ad.id === jobAd.id ? jobAd : ad),
     filteredJobAds: state.jobAds.map(ad => ad.id === jobAd.id ? jobAd : ad),
     filter: {},
@@ -48,7 +47,6 @@ export const jobAdReducer = createReducer(
   on(JobActions.deleteJobAd, state => ({...state })),
   on(JobActions.deleteJobAdSuccess, (state, { id }) => ({
     ...state,
-    loading: false,
     jobAds: state.jobAds.filter(ad => ad.id !== id),
     filteredJobAds: state.jobAds.filter(ad => ad.id !== id),
     filter: {},
